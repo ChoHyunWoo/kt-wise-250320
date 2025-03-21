@@ -41,12 +41,21 @@ fun main() {
             }
 
             "삭제" -> {
-                rq.getParam("id")?.let {
-                    it.toIntOrNull()?.let {
-                        wiseSayings.removeIf { saying -> saying.id == it }
-                        println("${it}번 명언을 삭제했습니다.")
-                    } ?: println("올바른 번호를 입력해주세요.")
-                } ?: println("삭제할 명언의 번호를 입력해주세요.")
+
+                val id = rq.getParam("id")?.toIntOrNull()
+
+                if (id == null) {
+                    println("삭제할 명언의 번호를 입력해주세요.")
+                    continue
+                }
+
+                val rst = wiseSayings.removeIf { saying -> saying.id == id }
+
+                if(rst) {
+                    println("${id}번 명언을 삭제했습니다.")
+                } else {
+                    println("${id}번 명언은 존재하지 않습니다.")
+                }
             }
 
             else -> {
