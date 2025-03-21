@@ -1,13 +1,20 @@
+import com.think.global.SingletonScope
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class AppTest {
+    @BeforeEach
+    fun setUp() {
+        SingletonScope.wiseSayingRepository.clear()
+    }
+
     @Test
     fun `명언 등록`() {
         val out =TestBot.run(
         """
             등록
-            인생은 짧고. 예술은 길다
+            인생은 짧고. 예술은 길다.
             헨리 장
         """
         )

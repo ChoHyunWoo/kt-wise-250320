@@ -1,11 +1,12 @@
 package com.think.domain.wiseSaying.service
 
 import com.think.domain.wiseSaying.entity.WiseSaying
-import com.think.domain.wiseSaying.repository.WiseSayingRepository
+import com.think.global.SingletonScope
 
-class WiseSayingService {
+class WiseSayingService(
 
-    private val wiseSayingRepository = WiseSayingRepository()
+) {
+    private val wiseSayingRepository = SingletonScope.wiseSayingRepository
 
     fun write(saying: String, author: String): WiseSaying {
         return wiseSayingRepository.save(WiseSaying(saying = saying, author = author))
