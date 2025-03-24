@@ -134,4 +134,20 @@ class AppTest {
     }
 
 
+    @Test
+    fun `makeSampleData`() {
+        TestBot.makeSampleData(10)
+
+        val out = TestBot.run(
+            """
+                목록
+            """.trimIndent()
+        )
+
+        println(out)
+
+        assertThat(out).contains("1 / ")
+        assertThat(out).contains("10 / ")
+
+    }
 }
