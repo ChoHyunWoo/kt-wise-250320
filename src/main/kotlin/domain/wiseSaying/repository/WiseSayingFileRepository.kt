@@ -51,6 +51,24 @@ class WiseSayingFileRepository : WiseSayingRepository {
         tableDirPath.toFile().deleteRecursively()
     }
 
+    override fun findByAuthorLike(keyword: String): List<WiseSaying> {
+
+        if (keyword.isBlank()) {
+            return findAll()
+        }
+
+        return findAll()
+            .filter { it.author.contains(keyword) }
+    }
+
+    override fun findBySayingLike(keyword: String): List<WiseSaying> {
+        if (keyword.isBlank()) {
+            return findAll()
+        }
+
+        return findAll()
+            .filter { it.saying.contains(keyword) }
+    }
     fun saveLastId(id: Int) {
         tableDirPath.resolve("lastId.txt").toFile().writeText(id.toString())
     }

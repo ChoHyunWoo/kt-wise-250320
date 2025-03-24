@@ -27,7 +27,15 @@ class WiseSayingService(
     fun modify(wiseSaying: WiseSaying, saying: String, author: String): WiseSaying {
         return wiseSayingRepository.save(wiseSaying.copy(saying = saying, author = author))
     }
+
     fun build() {
         wiseSayingRepository.build()
+    }
+
+    fun findByKeyword(keywordType: String, keyword: String): List<WiseSaying> {
+        return when (keywordType) {
+            "author" -> return wiseSayingRepository.findByAuthorLike(keyword)
+            else -> return wiseSayingRepository.findBySayingLike(keyword)
+        }
     }
 }

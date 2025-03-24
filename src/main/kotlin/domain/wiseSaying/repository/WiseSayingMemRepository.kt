@@ -37,4 +37,12 @@ class WiseSayingMemRepository : WiseSayingRepository {
         wiseSayings.clear()
         lastId = 0
     }
+
+    override fun findByAuthorLike(keyword: String): List<WiseSaying> {
+        TODO("Not yet implemented")
+    }
+
+    override fun findBySayingLike(keyword: String): List<WiseSaying> {
+        TODO("Not yet implemented")
+    }
 }
