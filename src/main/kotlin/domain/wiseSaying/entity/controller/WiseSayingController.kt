@@ -67,4 +67,9 @@ class WiseSayingController{
         } ?: println("${id}번 명언은 존재하지 않습니다.")
 
     }
+
+    fun build() {
+        wiseSayingService.build()
+        println("data.json 파일의 내용이 갱신되었습니다.")
+    }
 }

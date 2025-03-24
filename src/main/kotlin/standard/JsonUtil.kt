@@ -1,6 +1,33 @@
 package com.think.standard
 
 object JsonUtil {
+
+    fun listToJson(list: List<Map<String, Any>>): String {
+        return list.joinToString(
+            prefix = "[\n", postfix = "\n]", separator = ",\n"
+        ) {
+            mapToJson(it)
+        }
+    }
+
+    fun mapToJson(map: Map<String, Any>): String {
+        return map.entries.joinToString(
+            prefix = "{\n", postfix = "\n}", separator = ",\n"
+        ) { (key, value) ->
+            {
+                val formattedKey = "\"$key\""
+                val formattedValue = when (value) {
+                    is String -> "\"$value\""
+                    else -> value
+                }
+
+                "    $formattedKey: $formattedValue"
+            }.toString()
+        }
+    }
+
+
+
     fun jsonStrToMap(jsonStr: String): Map<String, Any> {
 
         val replacedJsonStr = jsonStr.replace("{", "")
