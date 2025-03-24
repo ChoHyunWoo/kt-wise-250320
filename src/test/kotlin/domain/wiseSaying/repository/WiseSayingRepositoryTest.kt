@@ -2,6 +2,7 @@ package domain.wiseSaying.repository
 
 import com.think.domain.wiseSaying.entity.WiseSaying
 import com.think.global.SingletonScope
+import com.think.global.SingletonScope.wiseSayingRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -50,9 +51,9 @@ class WiseSayingFileRepositoryTest {
 
     @Test
     fun `findAlll`() {
-     val w1 =   wiseSayingFileRepository
+        val w1 = wiseSayingFileRepository
             .save(WiseSaying(saying = "인생은 짧고 예술은 길다.", author = "헨리 장"))
-       val w2 =  wiseSayingFileRepository
+        val w2 = wiseSayingFileRepository
             .save(WiseSaying(saying = "내 죽음을 적에게 알리지 말라", author = "이순신"))
 
         val result = wiseSayingFileRepository.findAll()
@@ -62,6 +63,16 @@ class WiseSayingFileRepositoryTest {
         assertThat(count).isEqualTo(2)
         assertThat(result).containsExactly(w1, w2)
 
+    }
+
+    @Test
+    fun `findById`() {
+        val wiseSaying = wiseSayingRepository
+            .save(WiseSaying(saying = "나의 죽음을 적들에게 알리지 말라.", author = "충무공 이순신"))
+
+        val foundWiseSaying = wiseSayingRepository.findById(wiseSaying.id)
+
+        assertThat(foundWiseSaying).isEqualTo(wiseSaying)
     }
 
 
