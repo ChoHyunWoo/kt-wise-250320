@@ -43,7 +43,7 @@ class WiseSayingFileRepository : WiseSayingRepository {
     }
 
     override fun delete(wiseSaying: WiseSaying) {
-
+        tableDirPath.resolve("${wiseSaying.id}.json").toFile().delete()
     }
 
     override fun clear() {
