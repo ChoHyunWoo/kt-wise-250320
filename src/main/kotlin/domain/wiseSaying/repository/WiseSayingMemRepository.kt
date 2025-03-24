@@ -1,6 +1,7 @@
 package com.think.domain.wiseSaying.repository
 
 import com.think.domain.wiseSaying.entity.WiseSaying
+import com.think.standard.Page
 
 class WiseSayingMemRepository : WiseSayingRepository {
     private var lastId: Int = 0
@@ -43,6 +44,14 @@ class WiseSayingMemRepository : WiseSayingRepository {
     }
 
     override fun findBySayingLike(keyword: String): List<WiseSaying> {
+        TODO("Not yet implemented")
+    }
+
+    override fun findByAuthorLikePaged(keyword: String, page: Int, pageSize: Int): Page {
+        TODO("Not yet implemented")
+    }
+
+    override fun findBySayingLikePaged(keyword: String, page: Int, pageSize: Int): Page {
         TODO("Not yet implemented")
     }
 }

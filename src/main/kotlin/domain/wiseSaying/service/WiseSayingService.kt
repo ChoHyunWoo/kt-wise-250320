@@ -2,6 +2,7 @@ package com.think.domain.wiseSaying.service
 
 import com.think.domain.wiseSaying.entity.WiseSaying
 import com.think.global.SingletonScope
+import com.think.standard.Page
 
 class WiseSayingService(
 
@@ -36,6 +37,13 @@ class WiseSayingService(
         return when (keywordType) {
             "author" -> return wiseSayingRepository.findByAuthorLike(keyword)
             else -> return wiseSayingRepository.findBySayingLike(keyword)
+        }
+    }
+
+    fun findByKeywordPaged(keywordType: String, keyword: String, page: Int, pageSize: Int): Page {
+        return when (keywordType) {
+            "author" -> wiseSayingRepository.findByAuthorLikePaged(keyword, page, pageSize)
+            else -> wiseSayingRepository.findBySayingLikePaged(keyword, page, pageSize)
         }
     }
 }

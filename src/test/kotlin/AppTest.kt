@@ -1,3 +1,4 @@
+
 import com.think.global.SingletonScope
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -108,7 +109,6 @@ class AppTest {
             .contains("data.json 파일의 내용이 갱신되었습니다.");
     }
 
-
     @Test
     fun `목록(검색)`() {
         val result = TestBot.run(
@@ -133,23 +133,6 @@ class AppTest {
             .contains("2 / 작자미상 / 과거에 집착하지 마라.")
     }
 
-    @Test
-    fun `makeSampleData`() {
-        TestBot.makeSampleData(10)
-
-        val out = TestBot.run(
-            """
-                목록
-            """.trimIndent()
-        )
-
-        println(out)
-
-        assertThat(out).contains("1 / ")
-        assertThat(out).contains("10 / ")
-
-    }
-
 
     @Test
     fun `목록(페이징) - page=1`() {
@@ -160,6 +143,8 @@ class AppTest {
              목록
              """
         )
+
+        println(result)
 
         assertThat(result)
             .contains("10 / 작자미상 / 명언 10")
@@ -188,12 +173,12 @@ class AppTest {
     }
 
     @Test
-    fun `목록?page=2&keywordType=content&keyword=명언`() {
+    fun `목록?page=2&keywordType=saying&keyword=명언`() {
         TestBot.makeSampleData(10)
 
         val result = TestBot.run(
             """
-             목록?page=2&keywordType=content&keyword=명언
+             목록?page=2&keywordType=saying&keyword=명언
              """.trimIndent()
         )
 
@@ -206,12 +191,12 @@ class AppTest {
     }
 
     @Test
-    fun `목록?page=1&keywordType=content&keyword=1`() {
+    fun `목록?page=1&keywordType=saying&keyword=1`() {
         TestBot.makeSampleData(10)
 
         val result = TestBot.run(
             """
-             목록?page=1&keywordType=content&keyword=1
+             목록?page=1&keywordType=saying&keyword=1
              """.trimIndent()
         )
 

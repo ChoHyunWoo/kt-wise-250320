@@ -9,10 +9,11 @@ class TestBot {
         val originalIn = System.`in` // 표준 입력 - 키보드
         val originalOut = System.out // 표준 출력 - 모니터
 
-        fun makeSampleData(size : Int){
-           val input = ( 1 .. size).joinToString("\n"){i->
-                "등록\n명언 ${i}\n작자미상 ${i}\n"
+        fun makeSampleData(size: Int) {
+            val input = (1..size).joinToString("\n") { i ->
+                "등록\n명언 ${i}\n작자미상\n"
             }
+
             run(input)
         }
 
